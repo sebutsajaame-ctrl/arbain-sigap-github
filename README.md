@@ -1,1 +1,1143 @@
-# arbain-sigap-github
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <title>Sigap – Super App</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --bg: #F3F6F9;
+                --surface: #fff;
+                --ink: #0F2A43;
+                --muted: #5F7285;
+                --line: #DCE4EC;
+                --navy: #0F2A43;
+                --on-navy: #fff;
+                --accent: #FF7A1A;
+                --on-accent: #1A1000;
+                --ok: #12906F;
+                --chip: #E6EDF4;
+                --map: #E8EFF5;
+                --road: #fff;
+                --bld: #D9E4ED;
+                box-sizing: border-box;
+                padding-top: env(safe-area-inset-top,0px)
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    --bg:#0B1722;
+                    --surface: #122434;
+                    --ink: #EAF1F7;
+                    --muted: #97A9BA;
+                    --line: #223649;
+                    --navy: #0A1520;
+                    --chip: #1B3045;
+                    --ok: #3CCBA4;
+                    --map: #0E1E2C;
+                    --road: #17324A;
+                    --bld: #12293B
+                }
+            }
+
+            :root[data-theme="dark"] {
+                --bg: #0B1722;
+                --surface: #122434;
+                --ink: #EAF1F7;
+                --muted: #97A9BA;
+                --line: #223649;
+                --navy: #0A1520;
+                --chip: #1B3045;
+                --ok: #3CCBA4;
+                --map: #0E1E2C;
+                --road: #17324A;
+                --bld: #12293B
+            }
+
+            * {
+                box-sizing: border-box
+            }
+
+            [hidden] {
+                display: none!important
+            }
+
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--ink);
+                font: 400 16px/1.5 "Nunito Sans",system-ui,sans-serif;
+                padding-bottom: calc(150px + env(safe-area-inset-bottom,0px))
+            }
+
+            .wrap {
+                max-width: 820px;
+                margin: 0 auto;
+                padding: 0 20px
+            }
+
+            header {
+                background: radial-gradient(circle at 88% 15%,rgba(255,122,26,.38),transparent 46%),var(--navy);
+                color: var(--on-navy);
+                padding: 20px 0 74px
+            }
+
+            .top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 14px
+            }
+
+            .logo {
+                font: 800 1.4rem Sora,sans-serif
+            }
+
+            .logo b {
+                color: var(--accent)
+            }
+
+            .badge {
+                font-size: .8rem;
+                background: rgba(255,255,255,.14);
+                padding: 4px 12px;
+                border-radius: 99px
+            }
+
+            h1 {
+                font: 800 clamp(1.6rem,5.5vw,2.4rem)/1.12 Sora,sans-serif;
+                margin: 0
+            }
+
+            h1 em {
+                font-style: normal;
+                color: var(--accent)
+            }
+
+            .card {
+                margin-top: -52px;
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                padding: 14px;
+                box-shadow: 0 12px 30px rgba(15,42,67,.15);
+                position: relative;
+                display: grid;
+                gap: 10px
+            }
+
+            .wal {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px
+            }
+
+            .wal strong {
+                font: 800 1.3rem Sora,sans-serif
+            }
+
+            label {
+                font-size: .8rem;
+                color: var(--muted);
+                font-weight: 700;
+                display: block;
+                margin-bottom: 2px
+            }
+
+            input,textarea {
+                width: 100%;
+                font: inherit;
+                color: var(--ink);
+                background: var(--bg);
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 10px 12px
+            }
+
+            :focus-visible {
+                outline: 3px solid var(--accent);
+                outline-offset: 2px
+            }
+
+            h2 {
+                font: 800 1.25rem Sora,sans-serif;
+                margin: 22px 0 10px
+            }
+
+            .meta {
+                color: var(--muted);
+                font-size: .88rem
+            }
+
+            .lk {
+                color: var(--ink);
+                font-weight: 700;
+                font-size: .86rem;
+                text-decoration: underline;
+                text-underline-offset: 3px
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                gap: 10px
+            }
+
+            .sv,.tab {
+                border: 1px solid var(--line);
+                background: var(--surface);
+                color: var(--ink);
+                border-radius: 16px;
+                padding: 12px 4px;
+                font: 700 .8rem "Nunito Sans",sans-serif;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px
+            }
+
+            .sv span {
+                font-size: 1.8rem
+            }
+
+            .btn {
+                border: 0;
+                background: var(--accent);
+                color: var(--on-accent);
+                font: 700 .9rem "Nunito Sans",sans-serif;
+                padding: 9px 16px;
+                border-radius: 10px;
+                cursor: pointer;
+                text-decoration: none;
+                display: inline-block
+            }
+
+            .btn.g {
+                background: var(--chip);
+                color: var(--ink)
+            }
+
+            .list {
+                display: grid;
+                gap: 12px
+            }
+
+            .row {
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: 14px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px
+            }
+
+            .who {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                min-width: 0
+            }
+
+            .av {
+                flex: none;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--chip);
+                display: grid;
+                place-items: center;
+                font-size: 1.7rem
+            }
+
+            .price {
+                font: 800 1rem Sora,sans-serif;
+                white-space: nowrap;
+                text-align: right
+            }
+
+            .pg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px
+            }
+
+            .it {
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: 12px;
+                display: grid;
+                gap: 4px
+            }
+
+            .it .e {
+                font-size: 2.4rem;
+                text-align: center;
+                background: var(--bg);
+                border-radius: 12px
+            }
+
+            .qty {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 700
+            }
+
+            .qty button {
+                width: 30px;
+                height: 30px;
+                border-radius: 8px;
+                border: 1px solid var(--line);
+                background: var(--bg);
+                color: var(--ink);
+                font-size: 1.1rem;
+                cursor: pointer
+            }
+
+            .chips {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap
+            }
+
+            .chips button {
+                flex: 1;
+                border: 2px solid var(--line);
+                background: var(--bg);
+                color: var(--ink);
+                border-radius: 10px;
+                padding: 9px 6px;
+                font: 700 .85rem "Nunito Sans",sans-serif;
+                cursor: pointer
+            }
+
+            .chips button[aria-pressed="true"] {
+                border-color: var(--accent)
+            }
+
+            .tab[aria-pressed="true"] {
+                background: var(--navy);
+                color: var(--on-navy)
+            }
+
+            .st {
+                font-size: .74rem;
+                font-weight: 700;
+                border-radius: 99px;
+                padding: 2px 10px;
+                background: var(--ok);
+                color: #fff
+            }
+
+            .empty {
+                border: 1px dashed var(--line);
+                border-radius: 14px;
+                padding: 18px;
+                text-align: center;
+                color: var(--muted)
+            }
+
+            .fx {
+                position: fixed;
+                left: 12px;
+                right: 12px;
+                background: var(--navy);
+                color: var(--on-navy);
+                border-radius: 16px;
+                padding: 12px 14px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                z-index: 15;
+                box-shadow: 0 8px 24px rgba(0,0,0,.25)
+            }
+
+            .fx .meta {
+                color: rgba(255,255,255,.75)
+            }
+
+            #bn {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--surface);
+                border-top: 1px solid var(--line);
+                display: flex;
+                padding: 6px 10px calc(6px + env(safe-area-inset-bottom,0px));
+                z-index: 20
+            }
+
+            #bn button {
+                flex: 1;
+                border: 0;
+                background: none;
+                color: var(--muted);
+                font: 700 .75rem "Nunito Sans",sans-serif;
+                padding: 6px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center
+            }
+
+            #bn button span {
+                font-size: 1.4rem
+            }
+
+            #bn button[aria-current="page"] {
+                color: var(--accent)
+            }
+
+            dialog {
+                border: 0;
+                border-radius: 20px;
+                padding: 0;
+                width: min(520px,calc(100vw - 28px));
+                background: var(--surface);
+                color: var(--ink);
+                max-height: 92vh
+            }
+
+            dialog::backdrop {
+                background: rgba(5,15,25,.65)
+            }
+
+            .dl {
+                padding: 20px;
+                display: grid;
+                gap: 12px
+            }
+
+            .dl h3 {
+                margin: 0;
+                font: 800 1.2rem Sora,sans-serif
+            }
+
+            .sum {
+                background: var(--bg);
+                border-radius: 12px;
+                padding: 12px;
+                font-size: .92rem;
+                display: grid;
+                gap: 4px
+            }
+
+            .sum div {
+                display: flex;
+                justify-content: space-between
+            }
+
+            .sum .t {
+                font-weight: 800;
+                border-top: 1px dashed var(--line);
+                padding-top: 6px;
+                margin-top: 4px
+            }
+
+            .row2 {
+                display: flex;
+                gap: 10px
+            }
+
+            .row2 .btn {
+                flex: 1;
+                padding: 12px;
+                font-size: 1rem
+            }
+
+            .err {
+                color: #D93636;
+                font-size: .85rem;
+                min-height: 1.1em
+            }
+
+            .radar {
+                display: block;
+                margin: 0 auto;
+                width: min(230px,70%)
+            }
+
+            @keyframes rd {
+                from {
+                    r: 8;
+                    opacity: .7
+                }
+
+                to {
+                    r: 90;
+                    opacity: 0
+                }
+            }
+
+            @keyframes pu {
+                from {
+                    r: 8;
+                    opacity: .6
+                }
+
+                to {
+                    r: 28;
+                    opacity: 0
+                }
+            }
+
+            .rg {
+                fill: none;
+                stroke: var(--accent);
+                stroke-width: 3;
+                animation: rd 2.2s ease-out infinite
+            }
+
+            .pl {
+                fill: #2F7BFF;
+                animation: pu 1.8s infinite
+            }
+
+            .bar {
+                height: 8px;
+                background: var(--chip);
+                border-radius: 9px;
+                overflow: hidden
+            }
+
+            .bar i {
+                display: block;
+                height: 100%;
+                width: 0;
+                background: var(--ok);
+                transition: width .15s linear
+            }
+
+            .mt {
+                border-radius: 14px;
+                overflow: hidden;
+                border: 1px solid var(--line)
+            }
+
+            .mt svg {
+                display: block;
+                width: 100%;
+                height: auto
+            }
+
+            .mi {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                background: var(--bg);
+                border-radius: 12px;
+                padding: 10px 12px;
+                font-size: .9rem
+            }
+
+            .pin {
+                font: 800 1.3rem Sora,sans-serif;
+                letter-spacing: .12em;
+                color: var(--accent)
+            }
+
+            .sampai {
+                justify-self: start;
+                background: #FFE2C7;
+                color: #6B3200;
+                font: 700 .88rem "Nunito Sans",sans-serif;
+                border-radius: 99px;
+                padding: 5px 14px
+            }
+
+            .sampai.ya {
+                background: var(--ok);
+                color: #fff
+            }
+
+            .chat {
+                display: grid;
+                gap: 6px;
+                max-height: 110px;
+                overflow: auto;
+                margin-bottom: 8px
+            }
+
+            .bb {
+                max-width: 82%;
+                padding: 6px 12px;
+                border-radius: 12px;
+                font-size: .88rem;
+                background: var(--chip)
+            }
+
+            .bb.me {
+                justify-self: end;
+                background: var(--accent);
+                color: var(--on-accent)
+            }
+
+            .gmap iframe {
+                width: 100%;
+                height: 230px;
+                border: 0;
+                border-radius: 12px;
+                background: var(--chip);
+                display: block;
+                margin: 6px 0
+            }
+
+            .gmc {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+                background: var(--bg);
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                padding: 12px
+            }
+
+            .tl {
+                display: grid;
+                gap: 4px;
+                font-size: .86rem
+            }
+
+            .tl div {
+                display: flex;
+                gap: 10px;
+                color: var(--muted)
+            }
+
+            .tl b {
+                color: var(--ink);
+                min-width: 44px
+            }
+
+            .stars {
+                display: flex;
+                gap: 4px;
+                justify-content: center
+            }
+
+            .stars button {
+                border: 0;
+                background: none;
+                font-size: 2rem;
+                cursor: pointer;
+                color: var(--line)
+            }
+
+            .stars button.on {
+                color: var(--accent)
+            }
+
+            .ctr {
+                text-align: center
+            }
+
+            #ts {
+                position: fixed;
+                top: calc(12px + env(safe-area-inset-top,0px));
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--navy);
+                color: var(--on-navy);
+                padding: 8px 16px;
+                border-radius: 99px;
+                z-index: 50;
+                font-size: .88rem
+            }
+
+            footer {
+                text-align: center;
+                color: var(--muted);
+                font-size: .82rem;
+                padding: 24px 20px
+            }
+
+            @media(prefers-reduced-motion:reduce) {
+                * {
+                    animation: none!important;
+                    transition: none!important
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="wrap">
+                <div class="top">
+                    <div class="logo">
+                        Sigap<b>.</b>
+                    </div>
+                </div>
+                <h1>
+                    Satu aplikasi untuk <em>semua kebutuhan</em>.
+                </h1>
+            </div>
+        </header>
+        <div class="wrap">
+            <div class="card">
+                <div class="wal">
+                    <div>
+                        <div class="meta">SigapPay</div>
+                        <strong id="sal"></strong>
+                    </div>
+                    <button class="btn g" data-a="top">+ Top up Rp50.000</button>
+                </div>
+                <div>
+                    <label for="a0">Lokasi Anda</label>
+                    <input id="a0" value="Purwokerto, Jawa Tengah">
+                </div>
+                <div class="chips" style="align-items:center">
+                    <a class="lk" id="gm" target="_blank" rel="noopener"></a>
+                    <button class="btn g" id="me" style="flex:none">📍 Gunakan lokasi saya</button>
+                </div>
+            </div>
+            <div id="home">
+                <h2>Layanan</h2>
+                <div class="grid" id="sv"></div>
+            </div>
+            <div id="cat" hidden>
+                <h2>Belanja &amp; makanan</h2>
+                <div class="chips" id="ct"></div>
+                <div class="pg" id="pg" style="margin-top:12px"></div>
+            </div>
+            <div id="ord" hidden>
+                <h2>Pesanan saya</h2>
+                <div class="list" id="ol"></div>
+            </div>
+        </div>
+        <footer>© Sigap</footer>
+        <div id="cb" class="fx" style="bottom:calc(140px + env(safe-area-inset-bottom,0px))" hidden>
+            <div>
+                <strong id="cn"></strong>
+                <div class="meta">di keranjang</div>
+            </div>
+            <button class="btn" data-a="co">Checkout</button>
+        </div>
+        <div id="act" class="fx" style="bottom:calc(76px + env(safe-area-inset-bottom,0px))" hidden>
+            <div>
+                <strong id="at"></strong>
+                <div class="meta">Ketuk untuk melihat peta dan melacak</div>
+            </div>
+            <button class="btn" data-a="open">Lacak</button>
+        </div>
+        <nav id="bn" aria-label="Menu utama">
+            <button data-t="home" aria-current="page">
+                <span>🏠</span>Beranda
+            </button>
+            <button data-t="ord">
+                <span>🧾</span>Pesanan
+            </button>
+        </nav>
+        <dialog id="dlg">
+            <div class="dl" id="db"></div>
+        </dialog>
+        <script>
+            const SV = [["ojek", "Ojek", "🛵", "m", 4000, "Honda Beat"], ["mobil", "Mobil", "🚗", "m", 7000, "Toyota Avanza"], ["kurir", "Kurir", "📦", "m", 3500, "Yamaha NMAX"], ["food", "Makanan", "🍜", "c"], ["shop", "Belanja", "🛍️", "c"], ["bersih", "Bersih rumah", "🧹", "h", [["Reguler 2 jam", 80000], ["Menyeluruh 4 jam", 150000]]], ["ac", "Servis AC", "❄️", "h", [["Cuci AC", 85000], ["Isi Freon", 150000]]], ["pijat", "Pijat", "💆", "h", [["60 menit", 100000], ["90 menit", 140000]]]];
+            const CT = {
+                food: [["Nasi Goreng Kampung", "Warung Sambal Kita", "🍳", 22000, "4,8"], ["Bakso Urat Jumbo", "Bakso Mantap", "🍜", 24000, "4,7"], ["Es Kopi Susu", "Kopi Senja", "🧋", 18000, "4,9"], ["Ayam Penyet", "Warung Sambal Kita", "🍗", 26000, "4,8"], ["Sate Ayam 10 tusuk", "Sate Pak Dhe", "🍢", 25000, "4,6"], ["Es Teh Jumbo", "Kopi Senja", "🥤", 8000, "4,7"]],
+                shop: [["Earphone Bluetooth", "Toko Gadget Jaya", "🎧", 89000, "4,8"], ["Kaos Polos Katun", "Kaos Kita", "👕", 55000, "4,7"], ["Botol Minum 1L", "Rumah Tangga Asri", "🍶", 35000, "4,9"], ["Powerbank 10.000 mAh", "Toko Gadget Jaya", "🔋", 149000, "4,6"], ["Tas Ransel", "Tas Nusantara", "🎒", 119000, "4,7"], ["Sepatu Sneakers", "Sepatu Lokal", "👟", 199000, "4,8"]]
+            };
+            const NM = [["Budi Santoso", "🧔"], ["Siti Aminah", "👩"], ["Agus Prasetyo", "👨"], ["Dewi Lestari", "👩‍🦰"], ["Rizky Ramadhan", "🧑"], ["Eko Wahyudi", "👴"], ["Putri Maharani", "👩‍🦱"], ["Joko Susilo", "👨‍🦳"]];
+            const $ = id => document.getElementById(id)
+              , rp = n => "Rp" + Math.round(n).toLocaleString("id-ID")
+              , esc = s => String(s).replace(/[&<>"]/g, c => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;"
+            }[c]))
+              , GU = s => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s)
+              , clock = t => new Date(t).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit"
+            })
+              , rn = (a, b) => a + Math.random() * (b - a)
+              , hash = s => [...s].reduce( (a, c) => (a * 31 + c.charCodeAt(0)) % 997, 7);
+            let saldo = 150000, H = [], cart = {}, cat = "food", LL = "", ACT = 0, timers = [], O, CX, DR, pay = "SigapPay", hrow;
+            try {
+                const s = JSON.parse(localStorage.getItem("sg3") || "{}");
+                saldo = s.saldo ?? 150000;
+                H = s.H || []
+            } catch (_) {}
+            const save = () => {
+                try {
+                    localStorage.setItem("sg3", JSON.stringify({
+                        saldo,
+                        H: H.slice(0, 30)
+                    }))
+                } catch (_) {}
+            }
+            ;
+            const clr = () => {
+                timers.forEach(t => {
+                    clearInterval(t);
+                    clearTimeout(t)
+                }
+                );
+                timers = []
+            }
+            ;
+            const loc = () => $("a0").value.trim() || "Purwokerto, Jawa Tengah"
+              , show = h => {
+                $("db").innerHTML = h;
+                if (!$("dlg").open)
+                    $("dlg").showModal()
+            }
+            ;
+            const toast = t => {
+                let e = $("ts");
+                if (!e) {
+                    e = document.createElement("div");
+                    e.id = "ts";
+                    document.body.appendChild(e)
+                }
+                e.textContent = t;
+                e.hidden = false;
+                setTimeout( () => e.hidden = true, 2200)
+            }
+            ;
+            const drivers = (n, veh) => [...NM].sort( () => Math.random() - .5).slice(0, n).map(p => ({
+                name: p[0],
+                av: p[1],
+                r: rn(4.6, 5).toFixed(1),
+                j: Math.round(rn(200, 1100)),
+                t: Math.round(rn(3, 11)),
+                f: rn(.95, 1.1),
+                veh,
+                plate: "H " + Math.round(rn(1000, 9999)) + " " + String.fromCharCode(65 + rn(0, 26) | 0) + String.fromCharCode(65 + rn(0, 26) | 0)
+            }));
+            const road = `<rect width="400" height="400" fill="var(--map)"/><g fill="var(--bld)"><rect x="130" y="150" width="130" height="120" rx="8"/><rect x="20" y="150" width="70" height="120" rx="8"/><rect x="300" y="150" width="80" height="120" rx="8"/><rect x="130" y="320" width="130" height="60" rx="8"/><rect x="20" y="20" width="70" height="90" rx="8"/><rect x="130" y="20" width="130" height="90" rx="8"/></g><path d="M0 130H400M0 290H400M110 0V400M280 0V400" stroke="var(--road)" stroke-width="14" stroke-linecap="round" fill="none"/><text x="190" y="127" font-size="9" fill="var(--muted)" text-anchor="middle">Jl. Merdeka</text>`;
+            const pt = f => {
+                const d = f * 330;
+                return d <= 160 ? [110, 290 - d] : [110 + d - 160, 130]
+            }
+            ;
+            function render() {
+                $("sal").textContent = rp(saldo);
+                $("gm").href = GU(LL || loc());
+                $("gm").textContent = "Lihat lokasi di Google Maps ↗";
+                $("sv").innerHTML = SV.map(s => `<button class="sv" data-s="${s[0]}"><span aria-hidden="true">${s[2]}</span>${s[1]}</button>`).join("");
+                $("ct").innerHTML = [["food", "🍜 Makanan"], ["shop", "🛍️ Belanja"]].map(c => `<button data-c="${c[0]}" aria-pressed="${c[0] === cat}">${c[1]}</button>`).join("");
+                $("pg").innerHTML = CT[cat].map( (x, i) => {
+                    const q = cart[cat + ":" + i] || 0;
+                    return `<div class="it"><div class="e">${x[2]}</div><strong>${x[0]}</strong><div class="meta">${x[1]} · ★ ${x[4]}</div><div class="row" style="padding:0;border:0;background:none"><span class="price">${rp(x[3])}</span>${q ? `<div class="qty"><button data-k="${cat}:${i}:-1" aria-label="Kurangi">−</button>${q}<button data-k="${cat}:${i}:1" aria-label="Tambah">+</button></div>` : `<button class="btn" data-k="${cat}:${i}:1">Tambah</button>`}</div></div>`
+                }
+                ).join("");
+                const n = Object.values(cart).reduce( (a, b) => a + b, 0);
+                $("cb").hidden = !n || $("cat").hidden;
+                $("cn").textContent = n + " item · " + rp(cartSum());
+                $("ol").innerHTML = H.map(h => `<div class="row"><div><strong>${h.e} ${h.n}</strong> <span class="st">${h.s}</span><div class="meta">${h.w} · ${esc(h.d)}${h.r ? " · " + "★".repeat(h.r) : ""}</div></div><div class="price">${rp(h.t)}</div></div>`).join("") || '<div class="empty">Belum ada pesanan. Pilih layanan di Beranda.</div>'
+            }
+            const cartSum = () => Object.entries(cart).reduce( (a, [k,q]) => {
+                const [c,i] = k.split(":");
+                return a + CT[c][i][3] * q
+            }
+            , 0);
+            function tab(t) {
+                ["home", "cat", "ord"].forEach(k => $(k).hidden = k !== t);
+                document.querySelectorAll("#bn button").forEach(b => b.setAttribute("aria-current", b.dataset.t === (t === "cat" ? "home" : t) ? "page" : "false"));
+                render();
+                scrollTo(0, 0)
+            }
+            const payH = () => `<div><label>Pembayaran</label><div class="chips" id="py">${[["SigapPay", "SigapPay (" + rp(saldo) + ")"], ["Tunai", "Tunai"]].map(x => `<button data-p="${x[0]}" aria-pressed="${x[0] === pay}">${x[1]}</button>`).join("")}</div></div>`;
+            function openSvc(id) {
+                if (ACT === 1) {
+                    $("dlg").showModal();
+                    return
+                }
+                const s = SV.find(x => x[0] === id);
+                CX = {
+                    s,
+                    fee: 2000
+                };
+                if (s[3] === "c") {
+                    cat = id;
+                    tab("cat");
+                    return
+                }
+                if (s[3] === "m")
+                    show(`<h3>${s[2]} ${s[1]}</h3><div><label for="fr">Jemput</label><input id="fr" value="${esc(loc())}"></div><div><label for="to">Tujuan</label><input id="to" placeholder="Mau ke mana?"></div><div class="sum" id="sm">Isi tujuan untuk melihat estimasi tarif.</div><div class="err" id="er"></div><div class="row2"><button class="btn g" data-a="x">Batal</button><button class="btn" data-a="find">Cari driver</button></div>`);
+                else
+                    show(`<h3>${s[2]} ${s[1]}</h3><div><label>Paket</label><div class="chips" id="pk">${s[4].map( (p, i) => `<button data-pk="${i}" aria-pressed="${i === 0}">${p[0]}<br>${rp(p[1])}</button>`).join("")}</div></div><div><label for="to">Alamat layanan</label><input id="to" value="${esc(loc())}"></div><div class="err" id="er"></div><div class="row2"><button class="btn g" data-a="x">Batal</button><button class="btn" data-a="find">Cari mitra</button></div>`);
+                CX.pk = 0
+            }
+            function est() {
+                const s = CX.s
+                  , v = $("to").value.trim();
+                if (!v) {
+                    $("sm").textContent = "Isi tujuan untuk melihat estimasi tarif.";
+                    return
+                }
+                const km = hash(v) % 10 + 2;
+                $("sm").innerHTML = `<div><span>Estimasi jarak</span><span>${km} km</span></div><div class="t"><span>Tarif mulai dari</span><span>${rp(Math.round(s[4] * km / 500) * 500)}</span></div>`
+            }
+            function find() {
+                const s = CX.s
+                  , to = $("to").value.trim();
+                if (!to) {
+                    $("er").textContent = s[3] === "m" ? "Isi tujuan dulu." : "Isi alamat dulu.";
+                    return
+                }
+                let base, n;
+                if (s[3] === "m") {
+                    const km = hash(to) % 10 + 2;
+                    base = Math.round(s[4] * km / 500) * 500;
+                    n = s[1] + " ke " + to;
+                    CX.addr = $("fr").value.trim() || loc()
+                } else {
+                    const p = s[4][CX.pk];
+                    base = p[1];
+                    n = s[1] + " · " + p[0];
+                    CX.addr = to
+                }
+                CX.base = base;
+                CX.n = n;
+                DR = drivers(3, s[5] || "Teknisi terlatih");
+                show(`<h3>Pilih driver terdekat</h3><div class="meta">${esc(n)}</div><div class="list">${DR.map( (d, i) => `<div class="row"><div class="who"><span class="av">${d.av}</span><div><strong>${d.name}</strong><div class="meta">★ ${d.r} · ${d.j} pesanan</div><div class="meta">${d.veh} · tiba ±${d.t} menit</div></div></div><div><div class="price">${rp(Math.round(base * d.f / 500) * 500)}</div><button class="btn" data-d="${i}" style="margin-top:6px">Pilih</button></div></div>`).join("")}</div>`)
+            }
+            function confirm_(i) {
+                const d = DR[i];
+                CX.drv = d;
+                CX.price = Math.round(CX.base * d.f / 500) * 500;
+                CX.type = "m";
+                confirmView(CX.price, CX.n + " · " + d.name)
+            }
+            function confirmView(price, title) {
+                CX.total = price + CX.fee;
+                show(`<h3>Konfirmasi pesanan</h3><div class="meta">${esc(title)}<br>${esc(CX.addr)}</div>${payH()}<div class="sum">${CX.lines || ""}<div><span>Harga</span><span>${rp(price)}</span></div><div><span>Biaya layanan</span><span>${rp(CX.fee)}</span></div><div class="t"><span>Total</span><span>${rp(CX.total)}</span></div></div><div class="err" id="er"></div><div class="row2"><button class="btn g" data-a="x">Batal</button><button class="btn" data-a="go">Pesan sekarang</button></div>`)
+            }
+            function checkout() {
+                if (ACT === 1) {
+                    $("dlg").showModal();
+                    return
+                }
+                const items = Object.entries(cart).filter(e => e[1]);
+                if (!items.length)
+                    return;
+                CX = {
+                    fee: 2000,
+                    addr: loc(),
+                    drv: drivers(1, "Motor")[0],
+                    n: "Belanja & makanan",
+                    type: "c",
+                    s: SV.find(x => x[0] === cat)
+                };
+                CX.drv.t = Math.round(rn(8, 14));
+                CX.lines = items.map( ([k,q]) => {
+                    const [c,i] = k.split(":")
+                      , x = CT[c][i];
+                    return `<div><span>${q}× ${x[0]}</span><span>${rp(x[3] * q)}</span></div>`
+                }
+                ).join("") + `<div><span>Ongkos kirim</span><span>${rp(8000)}</span></div>`;
+                CX.s = SV.find(x => x[0] === cat);
+                confirmView(cartSum() + 8000, "Diantar oleh " + CX.drv.name)
+            }
+            function go() {
+                if (pay === "SigapPay" && saldo < CX.total) {
+                    $("er").textContent = "Saldo SigapPay kurang. Top up dulu atau pilih Tunai.";
+                    return
+                }
+                if (pay === "SigapPay")
+                    saldo -= CX.total;
+                const d = CX.drv;
+                O = {
+                    e: CX.s[2],
+                    n: CX.n,
+                    type: CX.type,
+                    drv: d,
+                    total: CX.total,
+                    addr: CX.addr,
+                    ll: LL && CX.addr.includes(LL) ? LL : "",
+                    pin: String(1000 + Math.floor(Math.random() * 9000)),
+                    c0: clock(Date.now())
+                };
+                if (CX.type === "c")
+                    cart = {};
+                save();
+                render();
+                show(`<h3 class="ctr">Mencari driver terdekat…</h3><svg class="radar" viewBox="0 0 200 200" role="img" aria-label="Sedang mencari driver"><circle class="rg" cx="100" cy="100" r="8"/><circle class="rg" style="animation-delay:.7s" cx="100" cy="100" r="8"/><circle class="rg" style="animation-delay:1.4s" cx="100" cy="100" r="8"/><circle cx="100" cy="100" r="9" fill="#2F7BFF" stroke="#fff" stroke-width="3"/></svg><p class="meta ctr" style="margin:0">${esc(CX.n)}<br>Driver ${d.name} menerima pesanan</p>`);
+                clr();
+                timers.push(setTimeout(track, 3000))
+            }
+            function track() {
+                const d = O.drv
+                  , c = O.type === "c"
+                  , tgt = O.ll || O.addr;
+                ACT = 1;
+                show(`<h3>Lacak pesanan</h3><div class="sampai" id="sp">Belum sampai · dalam perjalanan</div>
+<div class="mt"><svg viewBox="0 0 400 400" role="img" aria-label="Posisi driver di peta">${road}<polyline points="110,290 110,130 280,130" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/><polyline id="tr" points="110,290" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle class="pl" cx="280" cy="130" r="8"/><circle cx="280" cy="130" r="9" fill="#2F7BFF" stroke="#fff" stroke-width="3"/><text x="280" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Lokasi Anda</text><g id="mv"><circle r="17" fill="var(--accent)" stroke="#fff" stroke-width="3"/><text y="6" text-anchor="middle" font-size="16">${O.e}</text></g></svg></div>
+<div><strong id="stt"></strong><div class="meta" id="eta"></div></div><div class="bar"><i id="pg2"></i></div>
+<div class="mi"><div class="who"><span class="av">${d.av}</span><div><strong>${d.name}</strong> · ★ ${d.r}<div class="meta">${d.veh} · ${d.plate}</div></div></div><div class="ctr"><div class="meta">PIN</div><div class="pin">${O.pin}</div></div></div>
+<div class="chips"><button data-a="chat">💬 Chat driver</button><button data-a="tel">📞 Telepon</button></div>
+<div id="cp" hidden><div class="chat" id="ch"></div><div class="chips"><button data-q="Saya sudah di titik jemput">Sudah di titik</button><button data-q="Tolong hubungi saya">Hubungi saya</button><button data-q="Mohon hati-hati ya">Hati-hati</button></div></div>
+<div class="gmap"><div class="meta"><strong>Google Maps asli</strong> · sekitar lokasi Anda</div><iframe id="gf" title="Google Maps sekitar lokasi Anda" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${encodeURIComponent(tgt)}&amp;z=15&amp;output=embed"></iframe><div class="meta">Peta ini menampilkan lokasi Anda. Posisi driver ada di peta di atas. Jika kosong, pakai tombol di bawah.</div></div>
+<div class="gmc"><div><strong>Buka di Google Maps</strong></div><div class="chips" style="flex:none"><a class="btn" target="_blank" rel="noopener" href="${GU(tgt)}">Peta sekitar saya</a><a class="btn g" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=${encodeURIComponent(tgt)}">Rute</a></div></div>
+<div class="tl" id="tl"></div><div class="row2" id="cl"><button class="btn g" data-a="x">Tutup, tetap dipantau</button></div><div id="fin"></div>`);
+                const t0 = Date.now()
+                  , D = 12000
+                  , ev = new Map()
+                  , sc = q => clock(t0 + q * d.t * 60000)
+                  , iv = setInterval( () => {
+                    const f = Math.min(1, (Date.now() - t0) / D)
+                      , [x,y] = pt(f)
+                      , dd = f * 330
+                      , rem = Math.max(1, Math.ceil(d.t * (1 - f)))
+                      , m = d.t * 350 * (1 - f);
+                    $("mv").setAttribute("transform", `translate(${x} ${y})`);
+                    $("pg2").style.width = f * 100 + "%";
+                    $("tr").setAttribute("points", dd <= 160 ? "110,290 110," + (290 - dd) : "110,290 110,130 " + (110 + dd - 160) + ",130");
+                    const tx = f < .1 ? "Driver bersiap" : f < .3 && c ? "Driver mengambil pesanan di toko" : f < .8 ? (c ? "Pesanan sedang diantar" : "Driver menuju lokasi Anda") : f < 1 ? "Hampir tiba" : (c ? "Pesanan sudah tiba. Selamat menikmati!" : "Driver sudah tiba. Selamat menikmati layanan!");
+                    $("stt").textContent = tx;
+                    $("eta").textContent = f < 1 ? "Tiba pukul " + sc(1) + " · ±" + rem + " menit · " + (m >= 1000 ? (m / 1000).toFixed(1).replace(".", ",") + " km" : Math.round(m / 10) * 10 + " m") : "Tiba pukul " + sc(1);
+                    $("sp").textContent = f < 1 ? "Belum sampai · dalam perjalanan" : "Sudah sampai ✔";
+                    $("sp").classList.toggle("ya", f >= 1);
+                    $("act").hidden = false;
+                    $("at").textContent = f < 1 ? d.name + " menuju lokasi Anda · ±" + rem + " menit" : "Driver sudah sampai ✔";
+                    [[0, "Driver " + d.name + " menerima pesanan"], [.1, c ? "Driver menuju toko" : "Driver berangkat"], [.8, "Hampir tiba"], [1, "Tiba di lokasi"]].forEach( ([q,t]) => {
+                        if (f >= q && !ev.has(t)) {
+                            ev.set(t, sc(q));
+                            $("tl").innerHTML = `<div><b>${O.c0}</b>Pesanan dibuat</div>` + [...ev].map( ([a,b]) => `<div><b>${b}</b>${a}</div>`).join("")
+                        }
+                    }
+                    );
+                    if (f >= 1) {
+                        clearInterval(iv);
+                        ACT = 2;
+                        $("cl").hidden = true;
+                        hrow = {
+                            e: O.e,
+                            n: O.n,
+                            t: O.total,
+                            d: d.name,
+                            s: "Selesai",
+                            w: O.c0,
+                            r: 0
+                        };
+                        H.unshift(hrow);
+                        save();
+                        render();
+                        $("fin").innerHTML = `<p class="meta ctr" id="rt" style="margin:8px 0 0">Bagaimana layanan ${d.name}?</p><div class="stars" id="st">${[1, 2, 3, 4, 5].map(n => `<button data-r="${n}" aria-label="${n} bintang">★</button>`).join("")}</div><div class="row2"><button class="btn g" data-a="x">Tutup</button></div>`
+                    }
+                }
+                , 100);
+                timers.push(iv)
+            }
+            const say = (t, me) => {
+                const c = $("ch");
+                c.insertAdjacentHTML("beforeend", `<div class="bb${me ? " me" : ""}">${esc(t)}</div>`);
+                c.scrollTop = 1e5
+            }
+            ;
+            document.addEventListener("click", e => {
+                const b = e.target.closest("button");
+                if (!b)
+                    return;
+                const d = b.dataset;
+                if (d.t)
+                    tab(d.t);
+                else if (d.s)
+                    openSvc(d.s);
+                else if (d.c) {
+                    cat = d.c;
+                    render()
+                } else if (d.k) {
+                    const [c,i,v] = d.k.split(":")
+                      , k = c + ":" + i;
+                    cart[k] = Math.max(0, (cart[k] || 0) + Number(v));
+                    render()
+                } else if (d.pk !== undefined) {
+                    CX.pk = +d.pk;
+                    [...$("pk").children].forEach(k => k.setAttribute("aria-pressed", k === b))
+                } else if (d.d !== undefined)
+                    confirm_(+d.d)
+                else if (d.p) {
+                    pay = d.p;
+                    [...$("py").children].forEach(k => k.setAttribute("aria-pressed", k === b))
+                } else if (d.q) {
+                    say(d.q, 1);
+                    setTimeout( () => say("Baik, diterima. Saya segera ke sana."), 900)
+                } else if (d.r) {
+                    const n = +d.r;
+                    hrow.r = n;
+                    save();
+                    [...$("st").children].forEach( (k, i) => k.classList.toggle("on", i < n));
+                    $("rt").textContent = "Terima kasih atas penilaian Anda!";
+                    render()
+                } else if (d.a === "x")
+                    $("dlg").close();
+                else if (d.a === "find")
+                    find();
+                else if (d.a === "go")
+                    go();
+                else if (d.a === "co")
+                    checkout();
+                else if (d.a === "open")
+                    $("dlg").showModal();
+                else if (d.a === "chat") {
+                    $("cp").hidden = !$("cp").hidden;
+                    if (!$("ch").children.length)
+                        say("Halo, saya " + O.drv.name + ". Saya sedang menuju lokasi Anda.")
+                } else if (d.a === "tel")
+                    toast("Memanggil " + O.drv.name + "…")
+                else if (d.a === "top") {
+                    saldo += 50000;
+                    save();
+                    render();
+                    toast("Top up Rp50.000 berhasil")
+                }
+            }
+            );
+            document.addEventListener("input", e => {
+                if (e.target.id === "to" && CX && CX.s[3] === "m")
+                    est();
+                else if (e.target.id === "a0") {
+                    LL = "";
+                    $("me").textContent = "📍 Gunakan lokasi saya";
+                    render()
+                }
+            }
+            );
+            $("dlg").addEventListener("close", () => {
+                if (ACT !== 1) {
+                    clr();
+                    ACT = 0;
+                    $("act").hidden = true
+                }
+            }
+            );
+            $("me").onclick = () => {
+                const b = $("me");
+                if (!navigator.geolocation) {
+                    b.textContent = "Lokasi tidak didukung";
+                    return
+                }
+                b.textContent = "Mencari lokasi…";
+                navigator.geolocation.getCurrentPosition(p => {
+                    LL = p.coords.latitude.toFixed(5) + "," + p.coords.longitude.toFixed(5);
+                    $("a0").value = "Lokasi saya (" + LL + ")";
+                    b.textContent = "📍 Lokasi terpakai";
+                    render()
+                }
+                , () => {
+                    b.textContent = "📍 Izin lokasi ditolak, isi manual"
+                }
+                , {
+                    timeout: 8000
+                })
+            }
+            ;
+            render();
+        </script>
+    </body>
+</html>
